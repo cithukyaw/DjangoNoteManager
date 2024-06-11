@@ -1,10 +1,39 @@
 import './App.css'
+import Register from './pages/Register';
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import Login from "./pages/Login.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Home from "./pages/Home.jsx";
+import NotFound from "./pages/NotFound.jsx";
+
+function logout() {
+  localStorage.clear();
+  return <Navigate to="/login" />
+}
+
+function RegisterAndLogout() {
+  localStorage.clear();
+  return <Register />
+}
 
 function App() {
 
   return (
-    <>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<RegisterAndLogout />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
