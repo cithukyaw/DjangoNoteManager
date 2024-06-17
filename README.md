@@ -1,18 +1,19 @@
 # Django Note Manager
 
 A full-stack tutorial web application using Python and Javascript as well as implementing authentication using JWT tokens.
-- backend: Python, Django, PostgresSQL
-- frontend: React
+
+- [backend](/backend): Python, Django, PostgresSQL
+- [frontend](/frontend/): React
 
 Reference: https://www.youtube.com/watch?v=c-QsfbznSXI
 
 ## Installation
 
-    cd backend
-    pip install -r requirements.txt
+Clone the repo and cd to the project folder `DjangoNoteManager`.
 
-    python manage.py migrate
+### Python Virtual Environment Installation
 
-## Run
+    python -m venv .venv
 
-    python manage.py runserver
+    .venv\Scripts\activate (windows)
+    source .venv/bin/activate (linux)
