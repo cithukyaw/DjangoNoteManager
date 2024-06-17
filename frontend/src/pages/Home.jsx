@@ -2,11 +2,13 @@ import {useEffect, useState} from "react";
 import api from "../api";
 import "../styles/Home.css"
 import Note from "../components/Note.jsx";
+import {LoadingIndicator} from "../components/LoadingIndicator.jsx";
 
 function Home() {
     const [notes, setNotes] = useState([]);
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         getNotes();
@@ -24,14 +26,19 @@ function Home() {
 
     const createNote = (e) => {
         e.preventDefault();
+        setLoading(true);
 
         api.post('/api/notes', { content, title })
             .then(res => {
                 if (res.status === 201) alert('Note created!');
                 else alert('Failed to create note.')
+                setLoading(false);
                 getNotes();
             })
-            .catch(err => alert(err));
+            .catch(err => {
+                setLoading(false);
+                alert(err);
+            });
     };
 
     const deleteNote = (id) => {
@@ -74,6 +81,7 @@ function Home() {
                     onChange={(e) => setContent(e.target.value)}
                 ></textarea>
                 <br />
+                {loading && <LoadingIndicator />}
                 <input type="submit" value="Submit"></input>
             </form>
         </div>
