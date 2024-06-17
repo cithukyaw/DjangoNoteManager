@@ -13,12 +13,12 @@ function Form({ route, method }) {
 
     const name = method === 'login' ? 'Login' : 'Register';
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-            const res = api.post(route, {username, password})
+            const res = await api.post(route, {username, password})
             if (method === 'login') {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
