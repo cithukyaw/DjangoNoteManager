@@ -15,7 +15,7 @@ function Home() {
     }, []);
 
     const getNotes = () => {
-        api.get('/api/notes')
+        api.get('/api/notes/')
             .then(res => res.data)
             .then(data => {
                 setNotes(data);
@@ -28,7 +28,7 @@ function Home() {
         e.preventDefault();
         setLoading(true);
 
-        api.post('/api/notes', { content, title })
+        api.post('/api/notes/', { content, title })
             .then(res => {
                 if (res.status === 201) alert('Note created!');
                 else alert('Failed to create note.')
