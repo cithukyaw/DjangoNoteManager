@@ -28,15 +28,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-@(f@eh#h-wnn%upuh_2a!m*b()f=sfpkq0u0=c-)ju&0*%c3@x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-# CORS_ALLOW_HEADERS = ['localhost', 'http://localhost:5173']
-# CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
-# CSRF_TRUSTED_ORIGINS = ['http://localhost:5173']
-
-CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWS_CREDENTIALS = True
+if os.getenv('ENV') == 'production':
+    DEBUG = False
+    ALLOWED_HOSTS = ['https://example.com']
+    CORS_ALLOW_ALL_ORIGINS = False
+else:
+    DEBUG = True
+    ALLOWED_HOSTS = ['*']
+    CORS_ALLOW_ALL_ORIGINS = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
