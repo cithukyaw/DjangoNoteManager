@@ -4,12 +4,14 @@ import api from "../api.js";
 import {ACCESS_TOKEN, REFRESH_TOKEN} from "../constants.js";
 import "../styles/Form.scss"
 import {LoadingIndicator} from "./LoadingIndicator.jsx";
+import {FormError} from "./FormError.jsx";
 
 // eslint-disable-next-line react/prop-types
 function Form({ route, method }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
     const name = method === 'login' ? 'Login' : 'Register';
@@ -28,7 +30,12 @@ function Form({ route, method }) {
                 navigate('/login');
             }
         } catch (error) {
-            alert(error)
+            if (error.response.status !== 500) {
+                setErrors(error.response.data);
+                console.log(errors);
+            } else {
+                alert(error);
+            }
         } finally {
             setLoading(false);
         }
@@ -36,21 +43,28 @@ function Form({ route, method }) {
 
     return <form onSubmit={handleSubmit} className="form-container">
         <h1>{name}</h1>
-        <input
-            className="form-input"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
-        />
-        <input
-            className="form-input"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-        />
-        {loading && <LoadingIndicator />}
+        <div>
+            <FormError errors={errors} field="detail"></FormError>
+            <input
+                className={'form-input' + (errors.hasOwnProperty('username') ? ' input-error ' : '')}
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Username"
+            />
+            <FormError errors={errors} field="username"></FormError>
+        </div>
+        <div>
+            <input
+                className={'form-input' + (errors.hasOwnProperty('password') ? ' input-error ' : '')}
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+            />
+            <FormError errors={errors} field="password"></FormError>
+        </div>
+        {loading && <LoadingIndicator/>}
         <button className="form-button" type="submit">{name}</button>
     </form>
 }
