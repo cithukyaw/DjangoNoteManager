@@ -32,7 +32,11 @@ function Home() {
             .then(res => {
                 if (res.status === 201) alert('Note created!');
                 else alert('Failed to create note.')
+
                 setLoading(false);
+                setTitle('');
+                setContent('');
+
                 getNotes();
             })
             .catch(err => {
