@@ -9,7 +9,10 @@ Reference: https://www.youtube.com/watch?v=c-QsfbznSXI
 
 ## Installation
 
-Clone the repo and cd to the project folder `DjangoNoteManager`.
+1. Clone the repo
+2. CD to the project folder `DjangoNoteManager`.
+3. Create a database `django_notes` in PostgresSQL.
+4. Copy `backend/env` to `backend/.env` and configure your db settings
 
 ### Python Virtual Environment Installation
 
