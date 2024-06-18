@@ -31,6 +31,12 @@ SECRET_KEY = 'django-insecure-@(f@eh#h-wnn%upuh_2a!m*b()f=sfpkq0u0=c-)ju&0*%c3@x
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+# CORS_ALLOW_HEADERS = ['localhost', 'http://localhost:5173']
+# CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
+# CSRF_TRUSTED_ORIGINS = ['http://localhost:5173']
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWS_CREDENTIALS = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -63,12 +69,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -143,6 +149,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWS_CREDENTIALS = True
