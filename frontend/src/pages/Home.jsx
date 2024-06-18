@@ -19,7 +19,6 @@ function Home() {
             .then(res => res.data)
             .then(data => {
                 setNotes(data);
-                console.log(data);
             })
             .catch(err => alert(err));
     }
