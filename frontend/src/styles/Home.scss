@@ -1,6 +1,28 @@
 $blue: #007bff;
 $white: white;
 
+header {
+    background-color: #333;
+    color: $white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2em;
+
+    a.logout-button {
+        background-color: $white;
+        color: #333;
+        padding: .5em 1em;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    a.logout-button:hover {
+        background-color: $blue;
+        color: $white;
+    }
+}
+
 /* Styles for the notes section */
 .notes-section {
     margin-bottom: 2rem;

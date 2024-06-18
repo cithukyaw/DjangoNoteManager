@@ -55,43 +55,48 @@ function Home() {
     };
 
     return (
-        <div>
-            <div>
-                <h2>Notes</h2>
-                {notes.length ?
-                    notes.map((note) => <Note note={note} onDelete={deleteNote} key={note.id} />)
-                    :
-                    <p>There is no notes yet. Create a new note below.</p>
-                }
+        <>
+            <header>
+                <h1>Note Manager</h1>
+                <a href="/logout" className="logout-button">Logout</a>
+            </header>
+            <div className="container">
+                <div>
+                    {notes.length ?
+                        notes.map((note) => <Note note={note} onDelete={deleteNote} key={note.id}/>)
+                        :
+                        <p>There is no notes yet. Create a new note below.</p>
+                    }
+                </div>
+                <h2>Create a Note</h2>
+                <form onSubmit={createNote}>
+                    <div>
+                        <label htmlFor="title">Title:</label>
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            required
+                            onChange={(e) => setTitle(e.target.value)}
+                            value={title}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="content">Content:</label>
+                        <textarea
+                            id="content"
+                            name="content"
+                            required
+                            value={content}
+                            rows={5}
+                            onChange={(e) => setContent(e.target.value)}
+                        ></textarea>
+                    </div>
+                    {loading && <LoadingIndicator/>}
+                    <input type="submit" value="Submit"></input>
+                </form>
             </div>
-            <h2>Create a Note</h2>
-            <form onSubmit={createNote}>
-                <div>
-                    <label htmlFor="title">Title:</label>
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        required
-                        onChange={(e) => setTitle(e.target.value)}
-                        value={title}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="content">Content:</label>
-                    <textarea
-                        id="content"
-                        name="content"
-                        required
-                        value={content}
-                        rows={5}
-                        onChange={(e) => setContent(e.target.value)}
-                    ></textarea>
-                </div>
-                {loading && <LoadingIndicator />}
-                <input type="submit" value="Submit"></input>
-            </form>
-        </div>
+        </>
     );
 }
 
