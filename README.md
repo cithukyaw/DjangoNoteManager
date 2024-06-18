@@ -3,7 +3,7 @@
 A full-stack tutorial web application using Python and Javascript as well as implementing authentication using JWT tokens.
 
 - [backend](/backend): Python, Django, PostgreSQL
-- [frontend](/frontend/): React
+- [frontend](/frontend/): React, SCSS
 
 Reference: https://www.youtube.com/watch?v=c-QsfbznSXI
 

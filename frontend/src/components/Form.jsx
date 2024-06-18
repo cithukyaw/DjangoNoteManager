@@ -2,7 +2,7 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import api from "../api.js";
 import {ACCESS_TOKEN, REFRESH_TOKEN} from "../constants.js";
-import "../styles/Form.css"
+import "../styles/Form.scss"
 import {LoadingIndicator} from "./LoadingIndicator.jsx";
 
 // eslint-disable-next-line react/prop-types

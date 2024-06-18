@@ -1,4 +1,4 @@
-import "../styles/Note.css"
+import "../styles/Note.scss"
 
 function Note({note, onDelete}) {
     const formattedDate = new Date(note.created_at).toLocaleDateString("en-US");

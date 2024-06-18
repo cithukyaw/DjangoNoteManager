@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import api from "../api";
-import "../styles/Home.css"
+import "../styles/Home.scss"
 import Note from "../components/Note.jsx";
 import {LoadingIndicator} from "../components/LoadingIndicator.jsx";
 
