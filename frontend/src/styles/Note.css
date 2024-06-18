@@ -3,10 +3,12 @@
     margin: 20px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+    text-align: left;
 }
 
 .note-title {
     color: #333;
+    font-weight: bold;
 }
 
 .note-content {
